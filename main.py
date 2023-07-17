@@ -26,8 +26,8 @@ for lin in linhas3_sped:
     if lin[1] == 'C100':
         result = list(filter_value(notas, lin[8]))
         if result:
-            lin[27] = result[0][1]
-            lin[28] = result[0][2]
+            lin[27] = result[0][2]
+            lin[28] = result[0][3]
             cont = 1
             print('passei aqui 1', str(cont),lin[8])
             continue
@@ -36,13 +36,19 @@ for lin in linhas3_sped:
         cont = 0
         print('passei aqui 2', str(cont))
 
-    if lin[1] == 'C17    try:
+    if lin[1] == 'C170' and cont == 1:
+
+        try:
             print('passei aqui 3', str(cont))
-            lin[20] = result[0][4]
+            lin[36] = result[0][4]
             result.pop(0)
             continue
         except IndexError as error:
             print('Deu ruim')
+
+    if lin[1] == 'C175':
+        cont=0
+
 
 print('####################################')
 # for lin in linhas3:
