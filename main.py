@@ -1,7 +1,9 @@
+
+from notaFiscal import notaFiscal
 def filter_value(someList, value):
-    for x, y, z, w, a in someList:
+    for x, y, z, w, a, b  in someList:
         if x == value:
-            yield x, y, z, w, a
+            yield x, y, z, w, a , b
 
 arq_notas = open("notas.txt", "r", encoding="utf-8")
 linhas_nf = arq_notas.readlines()
@@ -26,27 +28,25 @@ for lin in linhas3_sped:
     if lin[1] == 'C100':
         result = list(filter_value(notas, lin[8]))
         if result:
-            lin[27] = result[0][2]
-            lin[28] = result[0][3]
             cont = 1
-            print('passei aqui 1', str(cont),lin[8])
+            print('C100 - passei aqui 1', str(cont), lin[8])
             continue
 
     if lin[1] == 'C100' and not result:
         cont = 0
-        print('passei aqui 2', str(cont))
+        print('C100 - passei aqui 2', str(cont),lin[8])
 
     if lin[1] == 'C170' and cont == 1:
 
         try:
-            print('passei aqui 3', str(cont))
-            lin[36] = result[0][4]
+            print('C170 - passei aqui 3', str(cont),lin[8] )
             result.pop(0)
             continue
         except IndexError as error:
             print('Deu ruim')
 
     if lin[1] == 'C175':
+        print('C175 - PASSEI AQUI 4',lin[8])
         cont=0
 
 
